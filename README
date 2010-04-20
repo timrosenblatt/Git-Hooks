@@ -1,0 +1,5 @@
+If you drop these files into the following path (assuming you're on OSX, it might be /usr/share on other OS)
+/usr/local/share/git-core/templates/hooks
+then they will be included every time you run 'git init' from now on.
+
+Or, just drop them in your current project's .git/hooks/ path.
