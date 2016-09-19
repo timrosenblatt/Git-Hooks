@@ -5,8 +5,6 @@
 
 # To install, put this in "project_directory/.git/hooks/post-merge", then `chmod +x post-merge`
 
-echo "we good"
-
 function changed {
   git diff --name-only HEAD@{2} HEAD | grep "^$1" > /dev/null 2>&1
 }
