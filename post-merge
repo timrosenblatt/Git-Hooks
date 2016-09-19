@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# post-checkout hook - looks for changes to Gemfile[.lock] or package.json,
+# every time you `git merge` or `git pull`
+
+# To install, put this in "project_directory/.git/hooks/post-merge", then `chmod +x post-merge`
+
+echo "we good"
+
+function changed {
+  git diff --name-only HEAD@{2} HEAD | grep "^$1" > /dev/null 2>&1
+}
+
+if changed 'Gemfile.*'; then
+  echo "Gemfile changed. You should probably run 'bundle install'"
+fi
+
+if changed 'db/migrate'; then
+  echo "Migrations pending."
+  echo "You probably want to run migrations for development and test"
+  echo "rake db:migrate RAILS_ENV=development"
+  echo "rake db:migrate RAILS_ENV=test"
+fi
+
+if changed 'package.json'; then
+  echo "package.json changed. You probably should run 'npm install'"
+fi
