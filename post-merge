@@ -2,6 +2,7 @@
 
 # post-checkout hook - looks for changes to Gemfile[.lock] or package.json,
 # every time you `git merge` or `git pull`
+# Inspired by https://gist.github.com/8bitDesigner/5869846
 
 # To install, put this in "project_directory/.git/hooks/post-merge", then `chmod +x post-merge`
 
