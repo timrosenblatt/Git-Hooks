@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # post-checkout hook - looks for changes to Gemfile[.lock] or package.json,
 # every time you `git merge` or `git pull`
@@ -6,9 +6,14 @@
 
 # To install, put this in "project_directory/.git/hooks/post-merge", then `chmod +x post-merge`
 
+RED="\x1B[31m"
+COLOR_RESET="\x1B[0m"
+
 function changed {
   git diff --name-only HEAD@{2} HEAD | grep "^$1" > /dev/null 2>&1
 }
+
+echo -en ${RED}
 
 if changed 'Gemfile.*'; then
   echo "Gemfile changed. You should probably run 'bundle install'"
@@ -24,3 +29,5 @@ fi
 if changed 'package.json'; then
   echo "package.json changed. You probably should run 'npm install'"
 fi
+
+echo -e ${COLOR_RESET}
