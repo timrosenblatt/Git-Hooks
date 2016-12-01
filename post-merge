@@ -15,7 +15,7 @@ function changed {
 
 echo -en ${RED}
 
-if changed 'Gemfile.*'; then
+if ! bundle check; then
   echo "Gemfile changed. You should probably run 'bundle install'"
 fi
 
